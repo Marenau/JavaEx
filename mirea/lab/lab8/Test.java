@@ -1,4 +1,4 @@
-package ru.mirea.lab8;
+package ru.mirea.lab.lab8;
 
 import java.io.FileReader;
 import java.io.FileWriter;

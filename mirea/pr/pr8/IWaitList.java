@@ -1,4 +1,4 @@
-package ru.mirea.pr8;
+package ru.mirea.pr.pr8;
 
 import java.util.Collection;
 

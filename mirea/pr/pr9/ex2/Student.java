@@ -1,4 +1,4 @@
-package ru.mirea.pr9.ex2;
+package ru.mirea.pr.pr9.ex2;
 
 public class Student implements Comparable{
     private int IDNumber;

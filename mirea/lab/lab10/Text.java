@@ -1,9 +1,6 @@
-package ru.mirea.lab10;
-
-import com.sun.security.jgss.GSSUtil;
+package ru.mirea.lab.lab10;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 
 public class Text {

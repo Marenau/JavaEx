@@ -1,4 +1,4 @@
-package ru.mirea.pr9.ex1;
+package ru.mirea.pr.pr9.ex1;
 
 import java.math.BigInteger;
 import java.util.Scanner;

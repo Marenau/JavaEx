@@ -1,4 +1,4 @@
-package ru.mirea.lab9;
+package ru.mirea.lab.lab9;
 
 public class ThrowsDemo5 {
     public void printMessage(String key) {
