@@ -1,6 +1,7 @@
 package ru.mirea.pr.pr9.ex2;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.net.MalformedURLException;
@@ -57,10 +58,18 @@ public class LabClassUI extends JFrame {
         String[] header = new String[]{"ID", "Name", "GPA"};
         DefaultTableModel defaultTableModel = new DefaultTableModel(header, 0);
         for (Student student : students)
-            defaultTableModel.addRow(new Object[]
-                    {student.getIDNumber(), student.getFIO(),
-                            student.getGPA()});
+            defaultTableModel.addRow(new Object[] {student.getIDNumber(), student.getFIO(), student.getGPA()});
+
         studentsTable = new JTable(defaultTableModel);
+        DefaultTableCellRenderer defaultTableCellRenderer = new DefaultTableCellRenderer();
+        defaultTableCellRenderer.setHorizontalAlignment(JLabel.CENTER);
+        studentsTable.getColumnModel().getColumn(0).setCellRenderer(defaultTableCellRenderer);
+        studentsTable.getColumnModel().getColumn(0).setMaxWidth(50);
+        studentsTable.getColumnModel().getColumn(0).setMinWidth(30);
+        studentsTable.getColumnModel().getColumn(2).setCellRenderer(defaultTableCellRenderer);
+        studentsTable.getColumnModel().getColumn(2).setMaxWidth(100);
+        studentsTable.getColumnModel().getColumn(2).setMinWidth(50);
+
         getContentPane().add(new JScrollPane(studentsTable), BorderLayout.CENTER);
         getContentPane().add(mainPanel, BorderLayout.NORTH);
     }
@@ -81,7 +90,7 @@ public class LabClassUI extends JFrame {
         removeStudent.addActionListener(actionEvent -> {
             try {
                 removeStudent();
-            } catch (IllegalStateException e) {
+            } catch (IllegalArgumentException e) {
                 JOptionPane.showMessageDialog(mainPanel, "Please, select the row(s)",
                         "Error!", JOptionPane.ERROR_MESSAGE);
             }
@@ -90,9 +99,12 @@ public class LabClassUI extends JFrame {
         findStudent.addActionListener(actionEvent -> {
             try {
                 findStudent();
-            } catch (StudentNotFoundException e) {
+            } catch (StudentNotFoundException e1) {
                 JOptionPane.showMessageDialog(mainPanel, "We don't have this student.",
                         "Warning!", JOptionPane.WARNING_MESSAGE);
+            } catch (EmptyStringException e2) {
+                JOptionPane.showMessageDialog(mainPanel, "Empty string!",
+                        "Error!", JOptionPane.ERROR_MESSAGE);
             }
         });
 
@@ -141,6 +153,9 @@ public class LabClassUI extends JFrame {
 
     private void findStudent() throws StudentNotFoundException {
         String FIO = JOptionPane.showInputDialog("Input name");
+        try {
+            if (FIO.equals("")) throw new EmptyStringException();
+        } catch (NullPointerException e) { return; }
         for (Student foundStudent : students) {
             if (foundStudent.getFIO().equals(FIO)) {
                 JOptionPane.showMessageDialog(this,
