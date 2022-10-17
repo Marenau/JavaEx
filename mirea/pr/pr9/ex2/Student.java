@@ -1,30 +1,38 @@
 package ru.mirea.pr.pr9.ex2;
 
-public class Student implements Comparable{
-    private int IDNumber;
-    private int GPA;
+import java.net.IDN;
 
-    public Student() {}
-    public Student(int IDNumber, int GPA) {
-        this.IDNumber = IDNumber;
+public class Student {
+    private int IDNumber = 0;
+    static int counter = 1;
+    private int GPA;
+    private String FIO;
+
+    public Student() {
+        IDNumber = counter++;
+    }
+    public Student(String FIO) throws EmptyStringException {
+        if (FIO == "") throw new EmptyStringException();
+        this.FIO = FIO;
+        IDNumber = counter++;
+    }
+    public Student(String FIO, int GPA) throws EmptyStringException {
+        if (FIO == "") throw new EmptyStringException();
         this.GPA = GPA;
+        this.FIO = FIO;
+        IDNumber = counter++;
     }
 
     public int getIDNumber() { return IDNumber; }
-    public void setIDNumber(int IDNumber) { this.IDNumber = IDNumber; }
     public int getGPA() { return GPA; }
     public void setGPA(int GPA) { this.GPA = GPA; }
-
-    @Override
-    public int compareTo(Object o) {
-        return this.IDNumber - ((Student) o).IDNumber;
-    }
+    public String getFIO() { return FIO; }
+    public void setFIO(String FIO) { this.FIO = FIO; }
 
     @Override
     public String toString() {
-        return "Student{" +
-                "IDNumber=" + IDNumber +
-                ", GPA=" + GPA +
-                '}';
+        return "Студент: " +
+                "\nФИО: " + FIO +
+                "\nСредний балл - " + GPA;
     }
 }
