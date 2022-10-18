@@ -1,7 +1,7 @@
-package ru.mirea.pr.pr10;
+package ru.mirea.pr.pr10.ex1;
 
 public class Complex {
-    int real, image;
+    private int real, image;
     public Complex() {
         this.real = 0;
         this.image = 0;
