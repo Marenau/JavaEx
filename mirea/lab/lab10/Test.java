@@ -1,15 +1,15 @@
 package ru.mirea.lab.lab10;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 
-public class Text {
+public class Test {
     public static <T> ArrayList<T> converter(T[] arr) {
         if (arr.length == 0)
             throw new IllegalArgumentException("Length of array is null");
         ArrayList<T> list = new ArrayList<>(arr.length);
-        for (T e: arr)
-            list.add(e);
+        list.addAll(Arrays.asList(arr));
         return list;
     }
 
