@@ -1,5 +1,7 @@
 package ru.mirea.lab.lab10;
 
+import java.io.File;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -19,8 +21,9 @@ public class Test {
         return arr[index];
     }
 
+    //Как сказали в другой группе
     public static <T> void saveContent(T[] arr) {
-        ArrayList<T> list = new ArrayList<T>(arr.length);
+        ArrayList<T> list = new ArrayList<>(arr.length);
         Collections.addAll(list, arr);
         try {
             for (int i = 0; i < 5; i++)
@@ -29,16 +32,33 @@ public class Test {
             e.printStackTrace();
         }
     }
+
+    //Идея с каталогом файла
+    public static ArrayList<File> readDirectory(String path) {
+        File file = new File(path);
+        if (!file.exists() || !file.isDirectory())
+            throw new IllegalArgumentException();
+        ArrayList<File> fileArrayList = new ArrayList<>();
+        Collections.addAll(fileArrayList, file.listFiles());
+        try {
+            for (int i = 0; i < 5; i++)
+                System.out.println(fileArrayList.get(i).getName());
+        } catch (Exception e) {
+            System.out.println("Less that 5 elements!");
+        }
+        return fileArrayList;
+    }
     
     public static void main(String[] arg) {
         Integer[] arr1 = new Integer[]{1, 2, 3};
         String[] arr2 = new String[]{"Hello", "world", "!", "!", "!"};
         ArrayList<String> arr3 = converter(arr2);
-//        System.out.println(arr3);
-//        System.out.println(get(arr1, 0));
-//        System.out.println(get(arr1, 10));
-//        saveContent(arr2);
-//        saveContent(arr1);
+        System.out.println(arr3);
+        System.out.println(get(arr1, 0));
+//        System.out.println(get(arr1, 10));    //Ошибка индекса
+        saveContent(arr2);
+        ArrayList<File> fileArrayList = readDirectory(Paths.get("").toAbsolutePath().toString());
+        System.out.println(fileArrayList);
 
         //Ex two
         GenericArrayList<Integer> arr4 = new GenericArrayList<>(6);
