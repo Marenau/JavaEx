@@ -3,7 +3,7 @@ package ru.mirea.pr.pr1112.ex2;
 import java.util.StringTokenizer;
 
 public class Address {
-    String country, region, city, street, house, corpus, apartment;
+    private String country, region, city, street, house, corpus, apartment;
 
     public Address(String str, boolean comma) {
         if (str == null)

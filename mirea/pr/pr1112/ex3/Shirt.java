@@ -1,7 +1,7 @@
 package ru.mirea.pr.pr1112.ex3;
 
 public class Shirt {
-    String number, name, color, size;
+    private String number, name, color, size;
 
     public Shirt(String str) {
         String[] strings = str.split(",");
