@@ -26,8 +26,8 @@ public class Person {
 
     public String returnFIO() {
         StringBuilder stringBuilder = new StringBuilder(lastName);
-        stringBuilder.append(" ").append(name.charAt(0)).append(".");
-        stringBuilder.append(secondName.charAt(0)).append(".");
+        stringBuilder.append(" ").append(name.charAt(0)).append(".").
+                append(secondName.charAt(0)).append(".");
         return  stringBuilder.toString();
     }
 }
