@@ -14,10 +14,10 @@ public class Shirt {
     @Override
     public String toString() {
         return "Shirt {" +
-                "\n\tnumber='" + number + '\'' +
-                ",\n\tname='" + name + '\'' +
-                ",\n\tcolor='" + color + '\'' +
-                ",\n\tsize='" + size + '\'' +
+                "\n\tnumber = '" + number + '\'' +
+                ",\n\tname = '" + name + '\'' +
+                ",\n\tcolor = '" + color + '\'' +
+                ",\n\tsize = '" + size + '\'' +
                 '}';
     }
 }
