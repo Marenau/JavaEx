@@ -45,7 +45,7 @@ public class Ex2 {
         return matcher.find();
     }
 
-    //Это треш, потому что проверка вискосного года
+    //Это треш, потому что проверка високосного года
     public static boolean isDate(String str) {
         Pattern pattern = Pattern.compile("29/02/+(19([02468][048])|([3579][26])" +
                 "| ([2-9]\\d([02468][048])|([3579][26]))) |" +
