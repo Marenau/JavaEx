@@ -141,7 +141,7 @@ public class Test {
         System.out.println(AD);
         System.out.println(VM);
         System.out.println(VM.getDate('l'));    //получение полной даты
-        System.out.println(AD.getDate('m'));    //получение полной даты
+        System.out.println(AD.getDate('m'));    //получение средней даты
         System.out.println();
 
         formDate(); //Ex4
