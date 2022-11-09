@@ -8,13 +8,14 @@ import java.util.HashMap;
 
 public class OrderManager {
     private Order[] orders;
-    private HashMap<String, Order> pairs;
+    private HashMap<String, Order> pairs;   //интернет-заказы
 
     public OrderManager() {
         this(10);
     }
     public OrderManager(int tableCount) {
         orders = new Order[tableCount];
+        pairs = new HashMap<>();
     }
 
     public void add(Order order, int tableNumber) throws OrderAlreadyAddedException, IllegalTableNumber {
@@ -76,26 +77,23 @@ public class OrderManager {
     }
 
 
-    public void add(String tableNumber, Order order) throws OrderAlreadyAddedException, IllegalTableNumber {
-        if (pairs.get(tableNumber) != null) throw new OrderAlreadyAddedException();
-        if (Integer.parseInt(tableNumber) > orders.length - 1) throw new IllegalTableNumber();
-        pairs.put(tableNumber, order);
+    //Методы для интернет-заказов
+    public void add(String address, Order order) throws OrderAlreadyAddedException {
+        if (pairs.get(address) != null) throw new OrderAlreadyAddedException();
+        pairs.put(address, order);
     }
 
-    public Order getOrder(String tableNumber) throws IllegalTableNumber {
-        if (Integer.parseInt(tableNumber) > orders.length - 1) throw new IllegalTableNumber();
-        return pairs.get(tableNumber);
+    public Order getOrder(String address) {
+        return pairs.get(address);
     }
 
-    public boolean remove(String tableNumber) throws IllegalTableNumber {
-        if (Integer.parseInt(tableNumber) > orders.length - 1) throw new IllegalTableNumber();
-        return pairs.remove(tableNumber) != null;
+    public boolean remove(String address) {
+        return pairs.remove(address) != null;
     }
 
-    public void addItem(String tableNumber, Item item) throws OrderAlreadyAddedException, IllegalTableNumber {
-        if (pairs.get(tableNumber) == null) throw new OrderAlreadyAddedException();
-        if (Integer.parseInt(tableNumber) > orders.length - 1) throw new IllegalTableNumber();
-        pairs.get(tableNumber).add(item);
+    public void addItem(String address, Item item) throws OrderAlreadyAddedException {
+        if (pairs.get(address) == null) throw new OrderAlreadyAddedException();
+        pairs.get(address).add(item);
     }
 
     public Order[] getOrders() {

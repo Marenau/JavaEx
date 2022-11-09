@@ -21,9 +21,4 @@ public final class Drink implements Item {
     public String getName() { return name; }
     public String getDescription() { return description; }
     public double getCost() { return cost; }
-
-    @Override
-    public int compareTo(Object o) {
-        return (int) (this.cost - ((Drink) o).cost);
-    }
 }

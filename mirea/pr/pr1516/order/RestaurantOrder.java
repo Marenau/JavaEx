@@ -1,9 +1,16 @@
 package ru.mirea.pr.pr1516.order;
 import ru.mirea.pr.pr1516.menu.Item;
 
+import java.util.Arrays;
+
 public class RestaurantOrder implements Order {
     private int size;
     private Item[] items;
+
+    public RestaurantOrder() {
+        size = 0;
+        items = new Item[0];
+    }
 
     private void addEmptyLastIndex() {
         Item[] temp = new Item[items.length + 1];
@@ -41,12 +48,18 @@ public class RestaurantOrder implements Order {
     @Override
     public int removeAll(String itemName) {
         int counter = 0;
+        int[] indexes = new int[size];
+        int k = size - 1;
         for (int i = 0; i < size; i++) {
             if (items[i].getName().equals(itemName)) {
-                removeElementByIndex(i);
+                indexes[k] = i;
+                k--;
                 counter++;
             }
         }
+        for (int i : indexes)
+            if (i != 0)
+                removeElementByIndex(i);
         return counter;
     }
 
@@ -79,15 +92,15 @@ public class RestaurantOrder implements Order {
         for (int i = 0; i < size; i++) {
             boolean isFound = false;
             for (String menuItem : strings) {
-                if (menuItem.equals(items[i].getName())) {
+                if (menuItem != null && menuItem.equals(items[i].getName())) {
                     isFound = true;
                     break;
                 }
             }
 
             if (!isFound) {
-                String[] temp = new String[items.length + 1];
-                System.arraycopy(items, 0, temp, 0, items.length);
+                String[] temp = new String[strings.length + 1];
+                System.arraycopy(strings, 0, temp, 0, strings.length);
                 temp[temp.length - 1] = items[i].getName();
                 strings = temp;
             }
@@ -97,12 +110,12 @@ public class RestaurantOrder implements Order {
 
     @Override
     public Item[] sortedItemsByCostDesc() {
-        Item[] sortItems = new Item[0];
+        Item[] sortItems = new Item[items.length];
         System.arraycopy(items, 0, sortItems, 0, items.length);
         for (int i = 0; i < sortItems.length; i++) {
             Item st = sortItems[i];
             int j = i - 1;
-            for (; (j >= 0) && (st.compareTo(sortItems[j]) < 0); j--)
+            for (; (j >= 0) && (st.getCost() - sortItems[j].getCost() < 0); j--)
                 sortItems[j + 1] = sortItems[j];
             sortItems[j + 1] = st;
         }

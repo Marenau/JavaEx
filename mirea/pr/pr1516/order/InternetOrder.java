@@ -8,6 +8,7 @@ public class InternetOrder implements Order {
     public InternetOrder() {
         head = new ListNode();
         tail = new ListNode();
+        head.next = tail;
     }
     public InternetOrder(Item[] items) {
         if (items.length == 0) return;
@@ -19,6 +20,10 @@ public class InternetOrder implements Order {
     public boolean add(Item item) {
         if (head.value == null) {
             head.value = item;
+            return true;
+        }
+        if (tail.value == null) {
+            tail.value = item;
             return true;
         }
         tail.next = new ListNode(item);
@@ -144,7 +149,7 @@ public class InternetOrder implements Order {
         for (int i = 0; i < items.length; i++) {
             Item st = items[i];
             int j = i - 1;
-            for (; (j >= 0) && (st.compareTo(items[j]) < 0); j--)
+            for (; (j >= 0) && (st.getCost() - items[j].getCost() < 0); j--)
                 items[j + 1] = items[j];
             items[j + 1] = st;
         }

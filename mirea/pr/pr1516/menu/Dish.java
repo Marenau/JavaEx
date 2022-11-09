@@ -1,7 +1,5 @@
 package ru.mirea.pr.pr1516.menu;
 
-import java.util.Objects;
-
 public class Dish implements Item {
     private String name;
     private String description;
@@ -27,10 +25,4 @@ public class Dish implements Item {
     public void setName(String name) { this.name = name; }
     public void setDescription(String description) { this.description = description; }
     public void setCost(double cost) { this.cost = cost; }
-
-    @Override
-    public int compareTo(Object o) {
-        return (int) (this.cost - ((Dish) o).cost);
-    }
-
 }
