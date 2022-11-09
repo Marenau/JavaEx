@@ -16,6 +16,7 @@ public class Test {
         order1.add(new Dish("Цезарь", "Вкусный салат", 360));
         order1.add(new Drink("Пряный чай Латте", "Пряный чай", 210));
         order1.add(new Dish("Цезарь", "Вкусный салат", 360));
+        order1.add(new Dish("Цезарь", "Вкусный салат", 360));
         System.out.println(order1.costTotal());
         System.out.println(order1.itemQuantity("Цезарь"));
         System.out.println(order1.remove("Цезарь"));
@@ -23,7 +24,7 @@ public class Test {
         for (String s: order1.itemsNames())
             System.out.println(s);
         order1.add(new Dish("Цезарь", "Вкусный салат", 360));
-        order1.removeAll("Цезарь");
+        System.out.println(order1.removeAll("Цезарь"));
         for (Item item : order1.sortedItemsByCostDesc())
             System.out.println(item.getName());
 

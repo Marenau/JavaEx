@@ -47,20 +47,10 @@ public class RestaurantOrder implements Order {
 
     @Override
     public int removeAll(String itemName) {
-        int counter = 0;
-        int[] indexes = new int[size];
-        int k = size - 1;
-        for (int i = 0; i < size; i++) {
-            if (items[i].getName().equals(itemName)) {
-                indexes[k] = i;
-                k--;
-                counter++;
-            }
-        }
-        for (int i : indexes)
-            if (i != 0)
-                removeElementByIndex(i);
-        return counter;
+        int count = 0;
+        while (remove(itemName))
+            count++;
+        return count;
     }
 
     @Override
