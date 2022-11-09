@@ -18,6 +18,13 @@ public class OrderManager {
         pairs = new HashMap<>();
     }
 
+    private void removeElementByIndex(int index) {
+        Order[] temp = new Order[orders.length - 1];
+        System.arraycopy(orders, 0, temp, 0, index);
+        System.arraycopy(orders, index + 1, temp, index, orders.length - index - 1);
+        orders = temp;
+    }
+
     public void add(Order order, int tableNumber) throws OrderAlreadyAddedException, IllegalTableNumber {
         if (orders[tableNumber] != null) throw new OrderAlreadyAddedException();
         if (tableNumber > orders.length - 1) throw new IllegalTableNumber();
@@ -56,13 +63,13 @@ public class OrderManager {
 
     public void remove(int tableNumber) throws IllegalTableNumber {
         if (tableNumber > orders.length - 1) throw new IllegalTableNumber();
-        orders[tableNumber] = null;
+        removeElementByIndex(tableNumber);
     }
 
     public boolean remove(Order order) {
         for (int i = 0; i < orders.length; i++) {
             if (orders[i].equals(order)) {
-                orders[i] = null;
+                removeElementByIndex(i);
                 return true;
             }
         }

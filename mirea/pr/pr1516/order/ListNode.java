@@ -1,4 +1,5 @@
 package ru.mirea.pr.pr1516.order;
+
 import ru.mirea.pr.pr1516.menu.Item;
 
 public class ListNode {
