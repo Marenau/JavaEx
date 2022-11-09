@@ -89,9 +89,7 @@ public class OrderManager {
 
     public boolean remove(String tableNumber) throws IllegalTableNumber {
         if (Integer.parseInt(tableNumber) > orders.length - 1) throw new IllegalTableNumber();
-        if (pairs.remove(tableNumber) != null)
-            return true;
-        return false;
+        return pairs.remove(tableNumber) != null;
     }
 
     public void addItem(String tableNumber, Item item) throws OrderAlreadyAddedException, IllegalTableNumber {

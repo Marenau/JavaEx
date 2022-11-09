@@ -37,8 +37,7 @@ public class InternetOrder implements Order {
                     prevGo.next = head.next;
                 if (head == tail)
                     tail = prevGo;
-                if(head == head)
-                    head = head.next;
+                head = head.next;
                 return true;
             }
             prevGo = go;
@@ -51,10 +50,8 @@ public class InternetOrder implements Order {
     @Override
     public int removeAll(String itemName) {
         int counter = 0;
-        while (true) {
-            if (remove(itemName)) break;
+        while (!remove(itemName))
             counter++;
-        }
         return counter;
     }
 

@@ -11,7 +11,7 @@ public final class Drink implements Item {
         this.cost = 0;
     }
     public Drink(String name, String description, double cost) {
-        if (cost < 0 || name == "" || description == "")
+        if (cost < 0 || name.equals("") || description.equals(""))
             throw new IllegalArgumentException();
         this.name = name;
         this.description = description;

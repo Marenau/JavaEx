@@ -1,5 +1,7 @@
 package ru.mirea.pr.pr1516.menu;
 
+import java.util.Objects;
+
 public class Dish implements Item {
     private String name;
     private String description;
@@ -11,7 +13,7 @@ public class Dish implements Item {
         this.cost = 0;
     }
     public Dish(String name, String description, double cost) {
-        if (cost < 0 || name == "" || description == "")
+        if (cost < 0 || name.equals("") || description.equals(""))
             throw new IllegalArgumentException();
         this.name = name;
         this.description = description;
