@@ -1,7 +1,7 @@
 package ru.mirea.pr.pr10.ex2;
 
-interface AbstractChairFactory {
-    VictorianChair createVictorianChair();
-    MagicChair createMagicanChair();
-    FunctionalChair createFunctionalChair();
+interface AbstractChairFactory {                //интерфейс фабрики
+    VictorianChair createVictorianChair();      //метод создания викторианского стула
+    MagicChair createMagicanChair();            //метод создания магического стула
+    FunctionalChair createFunctionalChair();    //метод создания функционального стула
 }
