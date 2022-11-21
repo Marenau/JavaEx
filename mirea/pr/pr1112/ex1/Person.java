@@ -1,33 +1,33 @@
 package ru.mirea.pr.pr1112.ex1;
 
-public class Person {
-    private String lastName, name, secondName;
+public class Person {                           //класс человека
+    private String lastName, name, secondName;  //закрытые поля ФИО
 
-    public Person() {
-        lastName = "Иванов";
-        name = "Иван";
-        secondName = "Иванович";
+    public Person() {                   //конструктор
+        lastName = "Иванов";            //присвоение полю зачнения по умолчанию
+        name = "Иван";                  //присвоение полю зачнения по умолчанию
+        secondName = "Иванович";        //присвоение полю зачнения по умолчанию
     }
-    public Person(String lastName) {
-        this.lastName = lastName;
-        name = "Иван";
-        secondName = "Иванович";
+    public Person(String lastName) {    //перегруженный конструктор
+        this.lastName = lastName;       //присвоение полю значения параметра
+        name = "Иван";                  //присвоение полю зачнения по умолчанию
+        secondName = "Иванович";        //присвоение полю зачнения по умолчанию
     }
-    public Person(String lastName, String name) {
-        this.lastName = lastName;
-        this.name = name;
-        secondName = "Иванович";
+    public Person(String lastName, String name) {   //перегруженный конструктор
+        this.lastName = lastName;                   //присвоение полю значения параметра
+        this.name = name;                           //присвоение полю значения параметра
+        secondName = "Иванович";                    //присвоение полю зачнения по умолчанию
     }
-    public Person(String lastName, String name, String secondName) {
-        this.lastName = lastName;
-        this.name = name;
-        this.secondName = secondName;
+    public Person(String lastName, String name, String secondName) {    //перегруженный конструктор
+        this.lastName = lastName;                                       //присвоение полю значения параметра
+        this.name = name;                                               //присвоение полю значения параметра
+        this.secondName = secondName;                                   //присвоение полю значения параметра
     }
 
-    public String returnFIO() {
-        StringBuilder stringBuilder = new StringBuilder(lastName);
-        stringBuilder.append(" ").append(name.charAt(0)).append(".").
+    public String returnFIO() {     //метод получения ФИО
+        StringBuilder stringBuilder = new StringBuilder(lastName);      //создание объекта класса StringBuilder
+        stringBuilder.append(" ").append(name.charAt(0)).append(".").   //добавление значения полей и знаков препинания
                 append(secondName.charAt(0)).append(".");
-        return  stringBuilder.toString();
+        return stringBuilder.toString();    //возврат значения метода toString объекта stringBuilder
     }
 }

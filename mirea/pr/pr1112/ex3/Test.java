@@ -1,8 +1,8 @@
 package ru.mirea.pr.pr1112.ex3;
 
-public class Test {
-    public static void main(String[] args) {
-        String[] strings = new String[] {
+public class Test {                                 //класс для тестирования
+    public static void main(String[] args) {        //основной алгоритм программы
+        String[] strings = new String[] {           //массив входных строк
                 "S001,Black Polo Shirt,Black,XL",
                 "S002,Black Polo Shirt,Black,L",
                 "S003,Blue Polo Shirt,Blue,XL",
@@ -15,10 +15,12 @@ public class Test {
                 "S010,Orange T-Shirt,Orange,S",
                 "S011,Maroon Polo Shirt,Maroon,S"
         };
-        Shirt[] shirts = new Shirt[strings.length];
-        for (int i = 0; i < strings.length; i++)
+        Shirt[] shirts = new Shirt[strings.length]; //новый массив рубашек
+        for (int i = 0; i < strings.length; i++)    //цикл присвоения
+            /* //присвоение элементам массива рубашек значения элемента массива входных строк */
             shirts[i] = new Shirt(strings[i]);
-        for (Shirt shirt : shirts)
-            System.out.println(shirt);
+        for (Shirt shirt : shirts)                  //цикл по массиву рубашек
+            System.out.println(shirt);              //вывод рубашки
     }
 }
+
