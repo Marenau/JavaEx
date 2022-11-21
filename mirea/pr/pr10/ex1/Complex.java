@@ -1,20 +1,22 @@
 package ru.mirea.pr.pr10.ex1;
 
-public class Complex {
-    private int real, image;
-    public Complex() {
-        this.real = 0;
-        this.image = 0;
-    };
-    public Complex(int real, int image) {
-        this.real = real;
-        this.image = image;
-    };
+public class Complex {          //класс, представляющий комплексное число
+    private int real, image;    //закрытые поля комплексного числа
+
+    public Complex() {          //конструктор
+        this.real = 0;          //присвоение полю значения нуля
+        this.image = 0;         //присвоение полю значения нуля
+    }
+    public Complex(int real, int image) {   //перегруженный конструктор
+        this.real = real;                   //присвоение полю значения параметра
+        this.image = image;                 //присвоение полю значения параметра
+    }
 
     @Override
-    public String toString() {
-        return "Complex = " +
+    public String toString() {              //переопределённый метод toString
+        return "Complex = " +               //возврат строки
                 "(" + real + ") + (" +
                 image + ")i";
     }
 }
+
