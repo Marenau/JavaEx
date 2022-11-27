@@ -1,33 +1,34 @@
-package ru.mirea.pr.pr1516.order;
+package ru.mirea.lab.lab1516.order;
 
-import ru.mirea.pr.pr1516.menu.Item;
+import ru.mirea.lab.lab1516.menu.MenuItem;
+import ru.mirea.lab.lab1516.order.Order;
 
-public class RestaurantOrder implements Order {                 //класс заказов в ресторане
-    private int size;                                           //поле количества позиций в заказе
-    private Item[] items;                                       //массив позиций заказа
+public class TableOrder implements Order {          //класс заказов в ресторане
+    private int size;                               //поле количества позиций в заказе
+    private MenuItem[] items;                       //массив позиций заказа
 
-    public RestaurantOrder() {      //конструктор
+    public TableOrder() {      //конструктор
         size = 0;                   //присвоение полям значений
-        items = new Item[0];
+        items = new MenuItem[0];
     }
 
-    private void addEmptyLastIndex() {                              //метод увеличения списка на 1 элемент в конце
-        Item[] temp = new Item[items.length + 1];                   //создание нового массива на +1 элемент
-        System.arraycopy(items, 0, temp, 0, items.length);          //копирование старого массива
-        items = temp;                                               //присвоение нового массива
-        size++;                                                     //инкрементация длины
+    private void addEmptyLastIndex() {                          //метод увеличения списка на 1 элемент в конце
+        MenuItem[] temp = new MenuItem[items.length + 1];       //создание нового массива на +1 элемент
+        System.arraycopy(items, 0, temp, 0, items.length);      //копирование старого массива
+        items = temp;                                           //присвоение нового массива
+        size++;                                                 //инкрементация длины
     }
 
-    private void removeElementByIndex(int index) {                  //метод удаления элемента по индексу
-        Item[] temp = new Item[items.length - 1];                   //создание новго массива на -1 элемент
-        System.arraycopy(items, 0, temp, 0, index);                 //копирование старого массива
+    private void removeElementByIndex(int index) {                                  //метод удаления элемента по индексу
+        MenuItem[] temp = new MenuItem[items.length - 1];                           //создание новго массива на -1 элемент
+        System.arraycopy(items, 0, temp, 0, index);                                 //копирование старого массива
         System.arraycopy(items, index + 1, temp, index, items.length - index - 1);  //удаление элемента по индексу
-        items = temp;                                               //присвоение нового массива
-        size--;                                                     //декрементация длины
+        items = temp;                                                               //присвоение нового массива
+        size--;                                                                     //декрементация длины
     }
 
     @Override
-    public boolean add(Item item) {             //переопределённый метод добавления элемента
+    public boolean add(MenuItem item) {          //переопределённый метод добавления элемента
         addEmptyLastIndex();                    //увеличение размера массива
         items[size - 1] = item;                 //присвоение элемента
         return true;                            //возврат логической единицы
@@ -56,7 +57,7 @@ public class RestaurantOrder implements Order {                 //класс з�
     public int itemsQuantity() { return size; } //метод получения количества позиций заказа
 
     @Override
-    public Item[] getItems() { return items; }  //метод получения позиций заказа
+    public MenuItem[] getItems() { return items; }  //метод получения позиций заказа
 
     @Override
     public double costTotal() {                 //метод получения стоимости заказа
@@ -98,11 +99,11 @@ public class RestaurantOrder implements Order {                 //класс з�
     }
 
     @Override
-    public Item[] sortedItemsByCostDesc() {                                         //метод сортировки по стоимости
-        Item[] sortItems = new Item[items.length];                                  //создание массива для сортировки
-        System.arraycopy(items, 0, sortItems, 0, items.length);                     //копирование элементов массива
-        for (int i = 0; i < sortItems.length; i++) {                                //сортировка вставками
-            Item st = sortItems[i];
+    public MenuItem[] sortedItemsByCostDesc() {                     //метод сортировки по стоимости
+        MenuItem[] sortItems = new MenuItem[items.length];          //создание массива для сортировки
+        System.arraycopy(items, 0, sortItems, 0, items.length);     //копирование элементов массива
+        for (int i = 0; i < sortItems.length; i++) {                //сортировка вставками
+            MenuItem st = sortItems[i];
             int j = i - 1;
             for (; (j >= 0) && (st.getCost() - sortItems[j].getCost() < 0); j--)
                 sortItems[j + 1] = sortItems[j];

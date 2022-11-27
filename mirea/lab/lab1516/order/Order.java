@@ -1,16 +1,15 @@
-package ru.mirea.pr.pr1516.order;
+package ru.mirea.lab.lab1516.order;
 
-import ru.mirea.pr.pr1516.menu.Item;
+import ru.mirea.lab.lab1516.menu.MenuItem;
 
 public interface Order {
-    boolean add(Item item);             //метод добавление позиции в заказ
+    boolean add(MenuItem item);         //метод добавление позиции в заказ
     boolean remove(String itemName);    //метод удаления позиции по названию
     int removeAll(String itemName);     //метод удаления всех элементов
     int itemsQuantity();                //метод подсчёта количества позиций в заказе
-    Item[] getItems();                  //метод получения массива позиций
+    MenuItem[] getItems();              //метод получения массива позиций
     double costTotal();                 //метод получения стоимости всех позиций заказа
     int itemQuantity(String itemName);  //цикл подсчёта количества позиции в заказе
     String[] itemsNames();              //метод получения массива строк позиций
-    Item[] sortedItemsByCostDesc();     //метод получения отсортированного массива позиций
+    MenuItem[] sortedItemsByCostDesc(); //метод получения отсортированного массива позиций
 }
-

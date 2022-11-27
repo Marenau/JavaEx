@@ -1,34 +1,40 @@
-package ru.mirea.pr.pr1516.order;
+package ru.mirea.lab.lab1516.order;
 
-import ru.mirea.pr.pr1516.menu.Item;
+import ru.mirea.lab.lab1516.menu.MenuItem;
 
 public class InternetOrder implements Order {   //класс интернет заказа
+    private int size;                           //поле длины списка
     private ListNode head;                      //начальный элемент списка
     private ListNode tail;                      //конечный элемент списка
 
-    public InternetOrder() {        //конструктор
-        head = new ListNode();      //присвоение полям значений
+    public InternetOrder() {    //конструктор
+        head = new ListNode();  //присвоение полям значений
         tail = new ListNode();
         head.next = tail;
+        size = 0;
     }
-    public InternetOrder(Item[] items) {        //перегруженный конструктор
+    public InternetOrder(MenuItem[] items) {    //перегруженный конструктор
         if (items.length == 0) return;          //проверка длины вводимого массива
         for (int i = 0; i < items.length; i++)  //цикл по массиву
             add(items[i]);                      //добавление элементов
+        size = items.length;                    //присвоение длины
     }
 
     @Override
-    public boolean add(Item item) {         //метод добавление позиции в заказ
+    public boolean add(MenuItem item) {     //метод добавления позиции к заказу
         if (head.value == null) {           //проверка на существование первого элемента
             head.value = item;              //добавление позиции
+            size++;                         //инкрементация длины
             return true;                    //возврат логической единицы
         }
         if (tail.value == null) {           //проверка на существование последнего элемента
             tail.value = item;              //добавление позиции
+            size++;                         //инкрементация длины
             return true;                    //возврат логической единицы
         }
         tail.next = new ListNode(item);     //создание нового узла с позицией
         tail = tail.next;                   //добавление узла в конец
+        size++;                             //инкрементация длины
         return true;                        //возврат логической единицы
     }
 
@@ -44,6 +50,7 @@ public class InternetOrder implements Order {   //класс интернет з
                 if (head == tail)
                     tail = prevGo;
                 head = head.next;
+                size--;                         //декрементация длины
                 return true;                    //возврат логической единицы
             }
             prevGo = go;    //продолжение обхода
@@ -73,7 +80,7 @@ public class InternetOrder implements Order {   //класс интернет з
     }
 
     @Override
-    public int itemQuantity(String itemName) {  //цикл подсчёта количества позиции в заказе
+    public int itemQuantity(String itemName) {  //метод подсчёта количества позиции в заказе
         int counter = 0;                        //счётчик
         ListNode go = head;                     //переменаня для обхода
         while (go != null) {                    //цикл обхода
@@ -84,12 +91,12 @@ public class InternetOrder implements Order {   //класс интернет з
     }
 
     @Override
-    public Item[] getItems() {                  //метод получения массива позиций
-        Item[] items = new Item[0];             //создание нового массива
-        ListNode go = head;                     //переменаня для обхода
-        while (go != null) {                    //цикл обхода
-            boolean isFound = false;            //переменная-флаг наличия
-            for (Item menuItem : items) {       //цикл по массиву
+    public MenuItem[] getItems() {                  //метод получения массива позиций
+        MenuItem[] items = new MenuItem[0];         //создание нового массива
+        ListNode go = head;                         //переменаня для обхода
+        while (go != null) {                        //цикл обхода
+            boolean isFound = false;                //переменная-флаг наличия
+            for (MenuItem menuItem : items) {       //цикл по массиву
                 if (menuItem.equals(go.value)) {    //сравнение элементов
                     isFound = true;                 //подъятие флага
                     break;                          //выход из цикла
@@ -97,10 +104,10 @@ public class InternetOrder implements Order {   //класс интернет з
             }
 
             if (!isFound) {                     //проверка флага
-                Item[] temp = new Item[items.length + 1];           //создание временного массива
+                MenuItem[] temp = new MenuItem[items.length + 1];         //создание временного массива
                 System.arraycopy(items, 0, temp, 0, items.length);  //копирование элементов массива
-                temp[temp.length - 1] = go.value;                   //добавление элемента
-                items = temp;                                       //присвоение массива
+                temp[temp.length - 1] = go.value;                         //добавление элемента
+                items = temp;                                             //присвоение массива
             }
 
             go = go.next;                       //продолжение обхода
@@ -145,10 +152,10 @@ public class InternetOrder implements Order {   //класс интернет з
     }
 
     @Override
-    public Item[] sortedItemsByCostDesc() {         //метод получения отсортированного массива позиций
-        Item[] items = getItems();                  //массив позиций
+    public MenuItem[] sortedItemsByCostDesc() {     //метод получения отсортированного массива позиций
+        MenuItem[] items = getItems();              //массив позиций
         for (int i = 0; i < items.length; i++) {    //сортировка вставками
-            Item st = items[i];
+            MenuItem st = items[i];
             int j = i - 1;
             for (; (j >= 0) && (st.getCost() - items[j].getCost() < 0); j--)
                 items[j + 1] = items[j];
